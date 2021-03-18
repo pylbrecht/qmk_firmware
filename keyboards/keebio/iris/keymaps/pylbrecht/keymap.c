@@ -36,11 +36,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_AMPR, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_TILD,                            XXXXXXX, KC_P7,   KC_P8,   KC_P9,   KC_ASTR, KC_F12,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_MINS, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,                             XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PLUS, XXXXXXX,
+     _______, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,                             XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PLUS, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_PIPE, _______,          _______, XXXXXXX, KC_P1,   KC_P2,   KC_P3,   KC_MINS, _______,
+     _______, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_PIPE, _______,          _______, XXXXXXX, KC_P1,   KC_P2,   KC_P3,   KC_BSLS, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, _______, KC_DEL,                    _______, _______, KC_P0
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   )
 };
+
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case TMUX_PRE:
+      if (record->event.pressed) {
+          SEND_STRING(SS_LCTL("b"));
+      }
+      break;
+  }
+  return true;
+}
