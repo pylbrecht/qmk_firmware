@@ -6,7 +6,8 @@
 
 #define _Z CTL_T(KC_Z)
 #define _SLSH CTL_T(KC_SLSH)
-#define _SPC ALT_T(KC_SPC)
+#define LSPC LT(_LOWER, KC_SPC)
+#define RSPC ALT_T(KC_SPC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -20,7 +21,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSFT, _Z,      KC_X,    KC_C,    KC_V,    KC_B,    _______,          _______, KC_N,    KC_M,    KC_COMM, KC_DOT,  _SLSH,   KC_RSFT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    MO(_LOWER), _SPC, KC_BSPC,                   KC_ENT,  _SPC,    MO(_LOWER)
+                                    KC_LALT, LSPC,    KC_BSPC,                   KC_ENT,  RSPC,    MO(_LOWER)
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
