@@ -11,29 +11,19 @@
 #define RSPC ALT_T(KC_SPC)
 #define BSPC LT(_RAISE, KC_BSPC)
 
-// home row mods
-#define HR_A LGUI_T(KC_A)
-#define HR_S LALT_T(KC_S)
-#define HR_D LSFT_T(KC_D)
-#define HR_F LCTL_T(KC_F)
-#define HR_J RCTL_T(KC_J)
-#define HR_K RSFT_T(KC_K)
-#define HR_L LALT_T(KC_L)
-#define HR_SCLN RGUI_T(KC_SCLN)
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     TG(_RAISE), KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_EQL,
+     XXXXXXX, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_EQL,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_ESC,  HR_A,    HR_S,    HR_D,    HR_F,    KC_G,                               KC_H,    HR_J,    HR_K,    HR_L,    HR_SCLN, KC_QUOT,
+     KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSFT, _Z,      KC_X,    KC_C,    KC_V,    KC_B,    KC_SPC,           KC_BSPC, KC_N,    KC_M,    KC_COMM, KC_DOT,  _SLSH,   KC_RSFT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    _______, MO(_LOWER), _______,                KC_ENT,  LT(_LOWER, KC_BSPC), _______
+                                    KC_LALT, MO(_LOWER),  _______,                   KC_ENT, MO(_LOWER),   KC_RALT
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
@@ -64,3 +54,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   )
 };
+
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case TMUX_PRE:
+      if (record->event.pressed) {
+          SEND_STRING(SS_LCTL("b"));
+      }
+      break;
+  }
+  return true;
+}
