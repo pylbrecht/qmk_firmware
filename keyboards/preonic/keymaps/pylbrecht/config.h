@@ -52,3 +52,6 @@
 #define ONESHOT_TAP_TOGGLE 5
 /* Time (in ms) before the one shot key is released */
 #define ONESHOT_TIMEOUT 5000
+
+#define TAPPING_TERM 150
+#define IGNORE_MOD_TAP_INTERRUPT
