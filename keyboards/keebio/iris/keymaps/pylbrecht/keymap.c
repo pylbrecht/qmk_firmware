@@ -11,6 +11,11 @@
 #define RSPC ALT_T(KC_SPC)
 #define BSPC LT(_RAISE, KC_BSPC)
 
+enum keycodes {
+  QWERTY = SAFE_RANGE,
+  LOWER
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT(
@@ -23,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSFT, _Z,      KC_X,    KC_C,    KC_V,    KC_B,    KC_SPC,           KC_BSPC, KC_N,    KC_M,    KC_COMM, KC_DOT,  _SLSH,   KC_RSFT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    KC_LALT, MO(_LOWER),  _______,                   KC_ENT, MO(_LOWER),   KC_RALT
+                                    KC_LALT, LOWER,   _______,                   KC_ENT,  LOWER,   KC_RALT
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
@@ -54,3 +59,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   )
 };
+
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case LOWER:
+      if (record->event.pressed) {
+        layer_on(_LOWER);
+      } else {
+        layer_off(_LOWER);
+      }
+      return false; // Skip all further processing of this key
+    default:
+      return true; // Process all other keycodes normally
+  }
+}
