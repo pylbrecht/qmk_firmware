@@ -53,5 +53,5 @@
 /* Time (in ms) before the one shot key is released */
 #define ONESHOT_TIMEOUT 5000
 
-#define TAPPING_TERM 150
+#define TAPPING_TERM 140
 #define IGNORE_MOD_TAP_INTERRUPT
