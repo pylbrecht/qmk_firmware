@@ -13,10 +13,10 @@ enum layers {
 #define LSPC LT(_LOWER, KC_SPC)
 #define RSPC ALT_T(KC_SPC)
 #define BSPC LT(_RAISE, KC_BSPC)
-#define HRM_F SFT_T(KC_F)
-#define HRM_J SFT_T(KC_J)
-#define HRM_K ALT_T(KC_K)
-#define HRM_D ALT_T(KC_D)
+#define SFT_F SFT_T(KC_F)
+#define SFT_J SFT_T(KC_J)
+#define ALT_K ALT_T(KC_K)
+#define ALT_D ALT_T(KC_D)
 
 enum keycodes {
   QWERTY = SAFE_RANGE,
@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_ESC,  KC_A,    KC_S,    HRM_D,   HRM_F,   KC_G,                               KC_H,    HRM_J,   HRM_K,   KC_L,    KC_SCLN, CAPSWRD,
+     KC_ESC,  KC_A,    KC_S,    ALT_D,   SFT_F,   KC_G,                               KC_H,    SFT_J,   ALT_K,   KC_L,    KC_SCLN, CAPSWRD,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      _______, _Z,      KC_X,    KC_C,    KC_V,    KC_B,    KC_SPC,           KC_BSPC, KC_N,    KC_M,    KC_COMM, KC_DOT,  _SLSH,   _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
