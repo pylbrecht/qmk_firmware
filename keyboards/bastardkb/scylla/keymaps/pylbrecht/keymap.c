@@ -17,6 +17,10 @@
 
 #include QMK_KEYBOARD_H
 
+#ifdef OS_DETECTION_ENABLE
+  #include "os_detection.h"
+#endif
+
 #define HRM_F SFT_T(KC_F)
 #define HRM_J SFT_T(KC_J)
 #define HRM_K ALT_T(KC_K)
@@ -139,3 +143,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
     return true;
 };
+
+#if defined(OS_DETECTION_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
+os_variant_t os;
+uint32_t swap_alt_gui(uint32_t trigger_time, void *cb_arg) {
+    os = detected_host_os();
+    if (os) {
+        switch (os) {
+            case OS_MACOS:
+            case OS_IOS:
+                keymap_config.swap_lalt_lgui = keymap_config.swap_ralt_rgui = true;
+                break;
+            default:
+                keymap_config.swap_lalt_lgui = keymap_config.swap_ralt_rgui = false;
+                break;
+        }
+        eeconfig_update_keymap(keymap_config.raw);
+        clear_keyboard();
+    }
+    return os ? 0 : 500;
+}
+#endif
+
+void keyboard_post_init_user(void) {
+#if defined(OS_DETECTION_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
+    defer_exec(100, swap_alt_gui, NULL);
+#endif
+}
