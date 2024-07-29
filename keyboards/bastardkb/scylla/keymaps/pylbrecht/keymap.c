@@ -141,6 +141,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             break;
+        case HRM_F:
+            // prevent accidental mod cmd+t
+            // (taken from https://precondition.github.io/home-row-mods#rolled-modifiers-cancellation)
+            if (record->event.pressed && record->tap.count > 0) {
+                if (get_mods() & MOD_BIT(KC_LALT)) {
+                    unregister_mods(MOD_BIT(KC_LALT));
+                    tap_code(KC_D);
+                    tap_code(KC_F);
+                    add_mods(MOD_BIT(KC_LALT));
+                    return false;
+                }
+            }
+            return true;
     }
     return true;
 };
