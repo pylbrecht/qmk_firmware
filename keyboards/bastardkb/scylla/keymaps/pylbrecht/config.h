@@ -22,7 +22,7 @@
 /* Time (in ms) before the one shot key is released */
 #define ONESHOT_TIMEOUT 5000
 
-#define TAPPING_TERM 140
+#define TAPPING_TERM 145
 #define TAPPING_FORCE_HOLD
 
 #define SPLIT_USB_DETECT
