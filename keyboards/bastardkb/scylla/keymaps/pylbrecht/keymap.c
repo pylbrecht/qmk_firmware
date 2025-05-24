@@ -24,8 +24,8 @@
 
 #define HRM_F SFT_T(KC_F)
 #define HRM_J SFT_T(KC_J)
-#define HRM_K ALT_T(KC_K)
-#define HRM_D ALT_T(KC_D)
+#define HRM_K RALT_T(KC_K)
+#define HRM_D LALT_T(KC_D)
 
 #define CTL_Z CTL_T(KC_Z)
 #define CTL_SL CTL_T(KC_SLSH)
