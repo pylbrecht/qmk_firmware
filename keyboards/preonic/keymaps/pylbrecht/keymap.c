@@ -24,7 +24,7 @@
 enum preonic_layers {
   _QWERTY,
   _LOWER,
-  _RAISE,
+  _SYMBOLS,
   _ADJUST,
 };
 
@@ -90,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
-[_RAISE] = LAYOUT_preonic_grid(
+[_SYMBOLS] = LAYOUT_preonic_grid(
   _______, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, _______, _______, _______, _______, _______, _______,
   _______, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_TILD, _______, _______, _______, _______, _______, _______,
   _______, KC_QUOT, KC_DQUO, KC_LPRN, KC_RPRN, KC_GRV, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______, _______,
@@ -135,20 +135,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case LOWER:
           if (record->event.pressed) {
             layer_on(_LOWER);
-            update_tri_layer(_LOWER, _RAISE, _ADJUST);
+            update_tri_layer(_LOWER, _SYMBOLS, _ADJUST);
           } else {
             layer_off(_LOWER);
-            update_tri_layer(_LOWER, _RAISE, _ADJUST);
+            update_tri_layer(_LOWER, _SYMBOLS, _ADJUST);
           }
           return false;
           break;
         case RAISE:
           if (record->event.pressed) {
-            layer_on(_RAISE);
-            update_tri_layer(_LOWER, _RAISE, _ADJUST);
+            layer_on(_SYMBOLS);
+            update_tri_layer(_LOWER, _SYMBOLS, _ADJUST);
           } else {
-            layer_off(_RAISE);
-            update_tri_layer(_LOWER, _RAISE, _ADJUST);
+            layer_off(_SYMBOLS);
+            update_tri_layer(_LOWER, _SYMBOLS, _ADJUST);
           }
           return false;
           break;
