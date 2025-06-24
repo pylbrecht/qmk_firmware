@@ -25,9 +25,9 @@
 #define HRM_F SFT_T(KC_F)
 #define HRM_J SFT_T(KC_J)
 #define HRM_K RALT_T(KC_K)
-#define HRM_L LT(_RAISE, KC_L)
+#define HRM_L LT(_SYMBOLS, KC_L)
 #define HRM_D LALT_T(KC_D)
-#define HRM_S LT(_RAISE, KC_S)
+#define HRM_S LT(_SYMBOLS, KC_S)
 
 #define CTL_Z CTL_T(KC_Z)
 #define CTL_SL CTL_T(KC_SLSH)
@@ -35,13 +35,13 @@
 enum scylla_layers {
   _QWERTY,
   _LOWER,
-  _RAISE,
+  _SYMBOLS,
   _ADJUST,
 };
 
 enum scylla_keycodes {
   LOWER,
-  RAISE,
+  SYMBOLS,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -58,14 +58,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //          |---------|---------|---------|---------|---------|---------|                                       |---------|---------|---------|---------|---------|---------|
 
 //                                         |---------|---------|---------|                                      |---------|---------|---------|
-                                             LOWER,    KC_SPC,   KC_BSPC,                                        KC_ENTER, RAISE,     KC_TAB,
+                                             LOWER,    KC_SPC,   KC_BSPC,                                        KC_ENTER, SYMBOLS,     KC_TAB,
 //                                         |---------|---------|---------|                                      |---------|---------|---------|
                                                        KC_PGUP,  _______,                                         _______,  KC_PGDN
 //                                                   |---------|---------|                                      |---------|---------|
 
             ),
 
-    [_RAISE] = LAYOUT_split_4x6_5(
+    [_SYMBOLS] = LAYOUT_split_4x6_5(
 //          |---------|---------|---------|---------|---------|---------|                                       |---------|---------|---------|---------|---------|---------|
               _______,  KC_F1,     KC_F2,   KC_F3,    KC_F4,    KC_F5,                                            _______,  _______,  _______,  _______,  _______,  _______,
 //          |---------|---------|---------|---------|---------|---------|                                       |---------|---------|---------|---------|---------|---------|
@@ -126,20 +126,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case LOWER:
             if (record->event.pressed) {
                 layer_on(_LOWER);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
+                update_tri_layer(_LOWER, _SYMBOLS, _ADJUST);
             } else {
                 layer_off(_LOWER);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
+                update_tri_layer(_LOWER, _SYMBOLS, _ADJUST);
             }
             return false;
             break;
-        case RAISE:
+        case SYMBOLS:
             if (record->event.pressed) {
-                layer_on(_RAISE);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
+                layer_on(_SYMBOLS);
+                update_tri_layer(_LOWER, _SYMBOLS, _ADJUST);
             } else {
-                layer_off(_RAISE);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
+                layer_off(_SYMBOLS);
+                update_tri_layer(_LOWER, _SYMBOLS, _ADJUST);
             }
             return false;
             break;
