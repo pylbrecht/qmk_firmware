@@ -25,7 +25,9 @@
 #define HRM_F SFT_T(KC_F)
 #define HRM_J SFT_T(KC_J)
 #define HRM_K RALT_T(KC_K)
+#define HRM_L LT(_RAISE, KC_L)
 #define HRM_D LALT_T(KC_D)
+#define HRM_S LT(_RAISE, KC_S)
 
 #define CTL_Z CTL_T(KC_Z)
 #define CTL_SL CTL_T(KC_SLSH)
@@ -50,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //          |---------|---------|---------|---------|---------|---------|                                       |---------|---------|---------|---------|---------|---------|
               _______,   KC_Q,    KC_W,     KC_E,     KC_R,     KC_T,                                            KC_Y,      KC_U,      KC_I,    KC_O,    KC_P,      KC_LBRC,
 //          |---------|---------|---------|---------|---------|---------|                                       |---------|---------|---------|---------|---------|---------|
-              KC_ESC,    KC_A,    KC_S,     HRM_D,    HRM_F,    KC_G,                                            KC_H,      HRM_J,    HRM_K,    KC_L,    KC_SCLN,   KC_QUOT,
+              KC_ESC,    KC_A,    HRM_S,     HRM_D,    HRM_F,    KC_G,                                            KC_H,      HRM_J,    HRM_K,    HRM_L,    KC_SCLN,   KC_QUOT,
 //          |---------|---------|---------|---------|---------|---------|                                       |---------|---------|---------|---------|---------|---------|
               KC_LCTL,    CTL_Z,   KC_X,     KC_C,      KC_V,    KC_B,                                            KC_N,      KC_M,    KC_COMM,  KC_DOT,   CTL_SL,   CW_TOGG,
 //          |---------|---------|---------|---------|---------|---------|                                       |---------|---------|---------|---------|---------|---------|
@@ -67,9 +69,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //          |---------|---------|---------|---------|---------|---------|                                       |---------|---------|---------|---------|---------|---------|
               _______,  KC_F1,     KC_F2,   KC_F3,    KC_F4,    KC_F5,                                            _______,  _______,  _______,  _______,  _______,  _______,
 //          |---------|---------|---------|---------|---------|---------|                                       |---------|---------|---------|---------|---------|---------|
-              _______, KC_EXLM,    KC_AT,   KC_LCBR,  KC_RCBR,  KC_TILD,                                          _______,  _______,  _______,  _______,  _______,  _______,
+              _______, KC_EXLM,    KC_AT,   KC_LCBR,  KC_RCBR,  KC_TILD,                                          _______,  _______,  KC_UNDS,  _______,  _______,  _______,
 //          |---------|---------|---------|---------|---------|---------|                                       |---------|---------|---------|---------|---------|---------|
-              _______, KC_QUOT,   KC_DQUO, KC_LPRN,   KC_RPRN,  KC_GRV,                                           KC_LEFT,  KC_DOWN,  KC_UP,   KC_RIGHT,  _______,  _______,
+              _______, KC_QUOT,   KC_DQUO, KC_LPRN,   KC_RPRN,  KC_GRV,                                           _______,  KC_GT,    KC_MINS,   KC_EQL,  _______,  _______,
 //          |---------|---------|---------|---------|---------|---------|                                       |---------|---------|---------|---------|---------|---------|
               _______, KC_PERC,   KC_CIRC, KC_LBRC,   KC_RBRC,  KC_PIPE,                                          _______,  _______,  _______,  _______,  _______,  _______,
 //          |---------|---------|---------|---------|---------|---------|                                       |---------|---------|---------|---------|---------|---------|
@@ -172,7 +174,7 @@ uint32_t swap_alt_gui(uint32_t trigger_time, void *cb_arg) {
                 keymap_config.swap_lalt_lgui = keymap_config.swap_ralt_rgui = false;
                 break;
         }
-        eeconfig_update_keymap(keymap_config.raw);
+        eeconfig_update_user(keymap_config.raw);
         clear_keyboard();
     }
     return os ? 0 : 500;
